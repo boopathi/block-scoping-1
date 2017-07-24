@@ -1,0 +1,28 @@
+<script>
+  (() => {
+    "use strict";
+
+    const samples = {
+      "try-catch": "try {} catch(a) { let a }",
+      "for-in": "for (let b in {}) { let b }",
+      "for-of": "for (let c of []) { let c }",
+      "for": "for (let d = 0; d < 2; d++) { let d }"
+    };
+
+    let output = "";
+
+    for (let sample in samples) {
+      output += `${sample.bold()}: <pre>${samples[sample].fontcolor("gray")}</pre> `;
+      try {
+        eval(samples[sample]);
+        output += "Works!!".fontcolor("green");
+      } catch (e) {
+        output += e.toString().fontcolor("red");
+      }
+      output += "<br/><br/>";
+    }
+
+    document.write(output);
+  })();
+
+</script>
